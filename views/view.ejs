@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Articles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .article {
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+        }
+        .article:last-child {
+            border-bottom: none;
+        }
+        .article h2 {
+            margin: 0 0 10px;
+            color: #007BFF;
+        }
+        .article p {
+            margin: 0 0 10px;
+            color: #555;
+        }
+        .article h6 {
+            margin: 5px 0;
+            color: #888;
+            font-size: 0.9em;
+        }
+        .article-actions {
+            margin-top: 10px;
+        }
+        .article-actions a, .article-actions form button {
+            margin-right: 10px;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .article-actions a:hover, .article-actions form button:hover {
+            background-color: #0056b3;
+        }
+        .article-actions form {
+            display: inline;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, #00024a, #7589d6);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #f1f1f1;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .auth-buttons a {
+            text-decoration: none;
+            color: white;
+            background-color: #633bff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .auth-buttons a:hover {
+            background-color: #452d9b;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+            }
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background: white;
+                margin: 5px 0;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(90deg, #4CAF50, #2E8B57);
+                padding: 10px 20px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+        }
+        .create-article {
+            text-align: right;
+            margin: 20px auto;
+        }
+        .create-article a {
+            text-decoration: none;
+            color: white;
+            background-color: #28a745;
+            padding: 12px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+        .create-article a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">BlogSite</div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="/login/view">Articles</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <%
+            var msg='login'
+            if(name.length!=0)
+            msg=name;
+        %>
+        <div class="auth-buttons">
+            <a href="/login"><%=msg%></a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <div class="create-article">
+        <a href="./create">Create Article</a>
+    </div>
+
+    
+    <div class="container">
+        <h1>Articles </h1>
+        <ul>
+            <% data.forEach(article => { %>
+                <li class="article">
+                    <h2><%= article.title %></h2>
+                    <p><%= article.content %></p>
+                    <h6><%= article.date %></h6>
+                    <p><strong>Author:</strong> <%= article.author %></p>
+                    <div class="article-actions">
+                        <% if (email === article.email) { %>
+                        <a href="./edit/<%= article._id%>">Edit</a>
+                        <a href="./delete/<%= article._id%>">Delete</a>
+                        
+                        <% } %>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>
+
+

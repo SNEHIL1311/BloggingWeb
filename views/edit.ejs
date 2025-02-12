@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Article</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], textarea, input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #00024a, #7589d6);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">BlogSite</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login/view">Articles</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+    <div class="container">
+        
+        <h1>Edit Article <%=name%></h1>
+        <form action="edit" method="POST">
+            <input type="hidden" name="id" value="<%=id%>">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Edit article title" value="<%= title %>" required>
+            
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="8" placeholder="Edit your article here..." required><%= content %></textarea>
+            
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" placeholder="Author name" value="<%= name %>" readonly>
+            
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Email" value="<%= email %>" readonly>
+            
+            <label for="date">Date</label>
+            <input type="datetime-local" id="date" name="date" readonly>
+            
+            <button type="submit">Update Article</button>
+        </form>
+    </div>
+    <script>
+        // Pre-fill the date field with the current date and time
+        const dateField = document.getElementById('date');
+        const now = new Date();
+        const formattedDate = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:MM
+        dateField.value = formattedDate;
+    </script>
+</body>
+</html>

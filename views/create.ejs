@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Article</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="datetime-local"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[readonly] {
+            background-color: #f0f0f0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #00024a, #7589d6);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #f1f1f1;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .auth-buttons a {
+            text-decoration: none;
+            color: white;
+            background-color: #633bff;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .auth-buttons a:hover {
+            background-color: #633bff;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+            }
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background: white;
+                margin: 5px 0;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(90deg, #4CAF50, #2E8B57);
+                padding: 10px 20px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+        }
+   
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">BlogSite</div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="/login/view">Articles</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="/login">Login</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <%=msg%>
+        <h1>Create an Article</h1>
+        <form action="/create/new" method="POST">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter article title" required>
+            
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" value="<%=name%>">
+
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="<%=email%>">
+            
+            <label for="date">Date</label>
+            <input type="datetime-local" id="date" name="date" readonly>
+            
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="8" placeholder="Write your article here..." required></textarea>
+            
+            <button type="submit">Submit Article</button>
+        </form>
+        
+    </div>
+
+
+    <script>
+        var currentdate = new Date();
+        var datetime = currentdate.getFullYear() + "-" +
+            String(currentdate.getMonth() + 1).padStart(2, '0') + "-" +
+            String(currentdate.getDate()).padStart(2, '0') + "T" +
+            String(currentdate.getHours()).padStart(2, '0') + ":" +
+            String(currentdate.getMinutes()).padStart(2, '0');
+    
+        document.getElementById('date').value = datetime;
+    </script>
+    
+</body>
+</html>

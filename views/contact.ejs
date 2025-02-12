@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        /* Apply same styles as view.ejs */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a2e;
+    padding: 10px 20px;
+}
+.logo img {
+    height: 40px;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+.nav-links li {
+    margin: 0 10px;
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.nav-links a.active {
+    color: #00aaff;
+}
+
+/* Content Styling */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Skills */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.skills span {
+    background: #00aaff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Contact Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+form input, form textarea {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form button {
+    margin-top: 15px;
+    background: #00aaff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+form button:hover {
+    background: #0088cc;
+}
+
+/* Transparent Footer */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: transparent;
+    color: #333;
+}
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Navbar (Copied from view.ejs) -->
+    <nav class="navbar">
+        <div class="flex items-center">
+            <a href="#" class="text-2xl font-semibold">BLOGSITE</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Me</a></li>
+            <li><a href="/contact" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="contact">
+            <h1>Contact Me</h1>
+            <p>Have any questions or want to collaborate? Drop me a message below!</p>
+
+            <form action="/contact" method="POST">
+                <label>Your Name</label>
+                <input type="text" name="name" required>
+
+                <label>Your Email</label>
+                <input type="email" name="email" required>
+
+                <label>Message</label>
+                <textarea name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+
+            <h2>Connect with Me</h2>
+            <p><strong>Email:</strong> snehil@example.com</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/snehilkishor">github.com/snehilkishor</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/snehilkishor">linkedin.com/in/snehilkishor</a></p>
+        </section>
+    </main>
+
+    <!-- Transparent Footer -->
+    <footer class="footer">
+        &copy; 2025 Snehil Kishor Burman. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
